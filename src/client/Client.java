@@ -3,9 +3,10 @@
  */
 package client;
 
-import java.io.FileInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -20,43 +21,52 @@ public class Client {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new Client();
-	
+		Client client = new Client();
 	}
 	
 	public Client(){
+		//Init Client
 		String fileName = "/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/"
-				+ "pg44823.txt";
+				+ "movie.mjpeg";
 		int bufferSize = 65536;
 		int serverPort = 4444;
-		Client.connect(fileName, serverPort, bufferSize);
+		String hostIp = "138.251.204.33";
+		Client.connect(fileName, serverPort, bufferSize, hostIp);
 	}
 
-	private static void connect(String fileName,  int serverPort, int bufferSize) {
+	private static void connect(String fileName,  int serverPort, int bufferSize, String hostIp) {
 		new Thread(new Runnable(){
 			public void run(){
 				try {
 					Thread.sleep(1000);
-					Socket socket = new Socket("localhost", serverPort);
-					FileInputStream fileInputStream = new FileInputStream(fileName);
-					OutputStream socketOutputStream = socket.getOutputStream();
-					long startTime = System.currentTimeMillis();
+					
+					//Create socket and I/O streams
+					Socket socket = new Socket(hostIp, serverPort);
+					
+					/* Create a new file in the directory using the filename  */
+					String newFile = "newFile";
+					FileOutputStream fileWriter = new FileOutputStream 
+							(new File("/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/" + newFile));
+					
+					int count;
+    				int totalRead = 0;
     				byte[] buffer = new byte[bufferSize];
-    				int read;
-    				int readTotal = 0;
-    				//loop till end of file in the FIS
-    				while ((read = fileInputStream.read(buffer)) != -1) {
-    					socketOutputStream.write(buffer, 0, read);
-    					readTotal += read;
-    				}
-    				socketOutputStream.close();
-    				fileInputStream.close();
-    				socket.close();
-    				
-    				long endTime = System.currentTimeMillis();
-    				System.out.println(readTotal + " bytes written in " + (endTime - startTime) + " ms.");
-    				System.out.println("Finished Transfer......");
-    				
+    				long startTime = System.currentTimeMillis();
+					
+					InputStream clientInputStream = socket.getInputStream();
+					while((count = clientInputStream.read(buffer)) > 0) {
+						fileWriter.write(buffer, 0, count);
+						totalRead += count;
+						
+					}
+					fileWriter.close();
+					
+					long endTime = System.currentTimeMillis();
+					System.out.println("Transfer Finished........");
+					System.out.println(totalRead + " bytes read in " + (endTime - startTime) + " ms.");	
+					
+					socket.close();
+					
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} catch (UnknownHostException e) {
