@@ -19,6 +19,14 @@ public class Multithreaded_Tcp_Server implements Runnable {
 	private int portNumber;
 	private ServerSocket serverSocket;
 
+	/**
+	 * Constructor for Multithreaded_Tcp_Server class
+	 * 
+	 * @param fileName
+	 * @param bufferSize
+	 * @param portNumber
+	 *
+	 */
 	public Multithreaded_Tcp_Server(String fileName, int bufferSize,
 			int portNumber) {
 		this.fileName = fileName;
@@ -51,6 +59,9 @@ public class Multithreaded_Tcp_Server implements Runnable {
 		}
 	}
 
+	/**
+	 * @return Host computer's IP address in string 
+	 */
 	public String getHostAddress() {
 		InetAddress hostAddress = null;
 		try {
@@ -60,7 +71,12 @@ public class Multithreaded_Tcp_Server implements Runnable {
 		}
 		return hostAddress.getHostAddress();
 	}
+	
 
+	/**
+	 * Opens server socket
+	 * @return true if socket was opened correctly, false if failed
+	 */
 	public boolean openServerSocket() {
 		try {
 			serverSocket = new ServerSocket(portNumber);
@@ -71,6 +87,10 @@ public class Multithreaded_Tcp_Server implements Runnable {
 		}
 	}
 
+	/**
+	 * Initiates file transfer to client using clientSocket
+	 * @param clientSocket
+	 */
 	public void transferFile(Socket clientSocket) {
 		long startTime = System.currentTimeMillis();
 		long endTime;
@@ -105,6 +125,13 @@ public class Multithreaded_Tcp_Server implements Runnable {
 		}
 	}
 
+	/**
+	 * Prints the time taken to transfer file 
+	 * 
+	 * @param startTime
+	 * @param endTime
+	 * @param readTotal
+	 */
 	public void printTransferDetails(long startTime, long endTime, int readTotal) {
 		System.out.println("Transfer begun......");
 		System.out.println(readTotal + " bytes written in "

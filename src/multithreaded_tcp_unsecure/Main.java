@@ -1,7 +1,14 @@
 package multithreaded_tcp_unsecure;
 
+/**
+ * @author 120011995
+ *
+ */
 public class Main {
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		String fileName = "/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/pg44823.txt";
 		int bufferSize = 65536;

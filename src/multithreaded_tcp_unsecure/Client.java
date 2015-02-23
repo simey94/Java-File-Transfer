@@ -29,6 +29,14 @@ public class Client implements Runnable {
 		new Thread(client).start();
 	}
 
+	/**
+	 * Constructor for the Client Class
+	 * 
+	 * @param fileName
+	 * @param bufferSize
+	 * @param portNumber
+	 * @param hostAddress
+	 */
 	public Client(String fileName, int bufferSize, int portNumber,
 			String hostAddress) {
 		this.fileName = fileName;
@@ -54,18 +62,22 @@ public class Client implements Runnable {
 
 	}
 
+	/**
+	 * Creates the new file on the local disk 
+	 * 
+	 * @param socket
+	 */
 	public void createFile(Socket socket) {
 		String newFile = "newFile";
 		FileOutputStream fileWriter;
 		int count;
 		int totalRead = 0;
 		byte[] buffer = new byte[bufferSize];
-		// check if time differs
+		// check if time differs inside or outside loop
 		long startTime = System.currentTimeMillis();
 
 		try {
-			fileWriter = new FileOutputStream(new File(
-					"/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/"
+			fileWriter = new FileOutputStream(new File("/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/"
 							+ newFile));
 
 			InputStream clientInputStream = socket.getInputStream();
@@ -85,6 +97,13 @@ public class Client implements Runnable {
 		}
 	}
 
+	/**
+	 * Prints the transfer details to user
+	 * 
+	 * @param startTime
+	 * @param endTime
+	 * @param readTotal
+	 */
 	public void printTransferDetails(long startTime, long endTime, int readTotal) {
 		System.out.println("Transfer begun......");
 		System.out.println(readTotal + " bytes written in "
