@@ -7,13 +7,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetAddress;
+
 import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLServerSocketFactory;
 
+import crc_checksum.CRC_Checksum;
+
 import java.net.UnknownHostException;
-import java.util.zip.CRC32;
-import java.util.zip.Checksum;
+
 
 /**
  * @author 120011995
@@ -83,6 +85,9 @@ public class Secure_Server implements Runnable {
 
 					int count;
 					int readTotal = 0;
+					
+					//do this at start before sending file 
+					CRC_Checksum.CalculateCRC32(fileName);
 
 					//write the file out to socket
 					while ((count = fileInputStream.read(buffer)) > 0) {
@@ -90,8 +95,7 @@ public class Secure_Server implements Runnable {
 						readTotal += count;
 					}
 
-					//do this at start before sending file 
-					CalculateCRC32(buffer);
+
 
 					// Close all I/O
 					socketOutputStream.close();
@@ -130,24 +134,6 @@ public class Secure_Server implements Runnable {
 			e1.printStackTrace();
 		}
 		return hostAddress.getHostAddress();
-	}
-
-
-	/**
-	 * @param fileToTransfer
-	 * @return The file's CRC value before transfer
-	 */
-	public long CalculateCRC32(byte fileToTransfer[]){
-		//create a checksum for the file
-		System.out.println("HEY");
-		Checksum checksum = new CRC32();
-		//compute the CRC32 checksum for byte array
-		checksum.update(fileToTransfer, 0, fileToTransfer.length);
-		//Get the generated checksum using getValue method of CRC32 class.
-		long checksumValue = checksum.getValue();
-		System.out.println("HERE");
-		System.out.println("Checksum value was: " + checksumValue);
-		return checksumValue;
 	}
 
 }

@@ -18,6 +18,8 @@ import java.security.NoSuchAlgorithmException;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
+import crc_checksum.CRC_Checksum;
+
 public class Secure_Client implements Runnable {
 	private String fileName;
 	private int bufferSize;
@@ -33,10 +35,9 @@ public class Secure_Client implements Runnable {
 				+ "pg44823.txt";
 		int bufferSize = 65536;
 		int serverPort = 4444;
-		String hostIp = "localhost";
+		String hostIp = "138.251.212.55";
 		Secure_Client client = new Secure_Client(fileName, bufferSize, serverPort, hostIp);
 		new Thread(client).start();
-
 	}
 
 	/**
@@ -87,6 +88,7 @@ public class Secure_Client implements Runnable {
 				totalRead += count;
 			}
 			
+			
 			fileWriter.close();
 			
 			//Generate final transfer times
@@ -94,6 +96,8 @@ public class Secure_Client implements Runnable {
 			System.out.println("Transfer Finished........");
 			System.out.println(totalRead + " bytes read in "
 					+ (endTime - startTime) + " ms.");
+			
+			CRC_Checksum.CalculateCRC32(fileName);
 			
 			socket.close();
 

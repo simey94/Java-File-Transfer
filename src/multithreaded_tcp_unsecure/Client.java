@@ -23,7 +23,7 @@ public class Client implements Runnable {
 		String fileName = "/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/pg44823.txt";
 		int bufferSize = 65536;
 		int portNumber = 4444;
-		String hostIp = "138.251.204.27";
+		String hostIp = "138.251.212.55";
 
 		Client client = new Client(fileName, bufferSize, portNumber, hostIp);
 		new Thread(client).start();

@@ -1,5 +1,0 @@
-cd var/tmp
-put 
-
-http://www.computerhope.com/unix/sftp.htm 
-http://stackoverflow.com/questions/24540156/automating-sftp-using-ibm-aixunix-shell-script
