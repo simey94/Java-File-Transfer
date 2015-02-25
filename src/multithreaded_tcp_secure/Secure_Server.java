@@ -12,6 +12,7 @@ import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLServerSocketFactory;
 
+import sha1_checksum.SHA1_Checksum;
 import crc_checksum.CRC_Checksum;
 
 import java.net.UnknownHostException;
@@ -88,6 +89,7 @@ public class Secure_Server implements Runnable {
 					
 					//do this at start before sending file 
 					CRC_Checksum.CalculateCRC32(fileName);
+					SHA1_Checksum.verifyChecksum(fileName);
 
 					//write the file out to socket
 					while ((count = fileInputStream.read(buffer)) > 0) {
@@ -135,5 +137,11 @@ public class Secure_Server implements Runnable {
 		}
 		return hostAddress.getHostAddress();
 	}
+	
+	//Create a handshake 
+	public void handShake(){
+		
+	}
+	
 
 }

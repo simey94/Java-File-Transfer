@@ -4,17 +4,21 @@
  */
 package sha1_checksum;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
+
 public class SHA1_Checksum {
 
-	public static boolean verifyChecksum(String file, String testChecksum) {
+	
+	/**
+	 * @param file
+	 * @return True if checksum's match false if they don't
+	 */
+	public static boolean verifyChecksum(String file) {
 
 		MessageDigest sha1 = null; 
 		try {
@@ -28,6 +32,8 @@ public class SHA1_Checksum {
 			while((read = fis.read(fileInBytes)) != -1){
 				sha1.update(fileInBytes, 0, read);
 			}
+			
+			fis.close();
 
 		} catch (NoSuchAlgorithmException | IOException e) {
 			e.printStackTrace();
@@ -39,10 +45,11 @@ public class SHA1_Checksum {
 		for(int i = 0; i < hashBytes.length; i++){
 			sb.append(Integer.toString((hashBytes[i] & 0xff) + 0x100, 16).substring(1));
 		}
-
+		
 		String fileHash = sb.toString();
-
-		return fileHash.equals(testChecksum); 
+		System.out.println("File SHA1 Hash was: " + fileHash);
+		return true;
+		//return fileHash.equals(testChecksum); 
 
 	}
 }

@@ -21,14 +21,15 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		String fileName = "/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/pg44823.txt";
-		int bufferSize = 65536;
+		int bufferSize = 64000;
 		int serverPort = 4444;
 		String multicastAddress = "224.0.0.03";
 
 		UDP_Multicast_Server multicastServer = new UDP_Multicast_Server(fileName, bufferSize, serverPort, multicastAddress );
 		System.out.println(multicastServer.getHostAddress());
-		multicastServer.createMulticastSocket();
-		new Thread(multicastServer).start();
+		//multicastServer.createMulticastSocket();
+		multicastServer.transferFile();
+		//new Thread(multicastServer).start();
 	}
 
 }

@@ -18,6 +18,7 @@ import java.security.NoSuchAlgorithmException;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
+import sha1_checksum.SHA1_Checksum;
 import crc_checksum.CRC_Checksum;
 
 public class Secure_Client implements Runnable {
@@ -35,7 +36,7 @@ public class Secure_Client implements Runnable {
 				+ "pg44823.txt";
 		int bufferSize = 65536;
 		int serverPort = 4444;
-		String hostIp = "138.251.212.55";
+		String hostIp = "138.251.204.53";
 		Secure_Client client = new Secure_Client(fileName, bufferSize, serverPort, hostIp);
 		new Thread(client).start();
 	}
@@ -98,6 +99,7 @@ public class Secure_Client implements Runnable {
 					+ (endTime - startTime) + " ms.");
 			
 			CRC_Checksum.CalculateCRC32(fileName);
+			SHA1_Checksum.verifyChecksum(fileName);
 			
 			socket.close();
 
@@ -141,5 +143,4 @@ public class Secure_Client implements Runnable {
 		fis.close();
 		return fileHash.equals(testChecksum);
 	}
-
 }

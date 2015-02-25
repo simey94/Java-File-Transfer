@@ -4,6 +4,7 @@
  */
 package multithreaded_tcp_unsecure;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,12 +13,18 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+
+import crc_checksum.CRC_Checksum;
 
 public class Multithreaded_Tcp_Server implements Runnable {
 	private String fileName;
 	private int bufferSize;
 	private int portNumber;
 	private ServerSocket serverSocket;
+	long fileLength = 0; 
+	long fileChecksum;
+	ArrayList <Client> clients = new ArrayList <Client>();
 
 	/**
 	 * Constructor for Multithreaded_Tcp_Server class
@@ -32,21 +39,22 @@ public class Multithreaded_Tcp_Server implements Runnable {
 		this.fileName = fileName;
 		this.bufferSize = bufferSize;
 		this.portNumber = portNumber;
+		fileLength = new File(fileName).length();
+	    fileChecksum = CRC_Checksum.CalculateCRC32(fileName);
 	}
-
+	
 	@Override
 	public void run() {
-		int clientNumber = 0;
+		int clientNumber = 1;
 		if (openServerSocket()) {
 			System.out
 					.println("Server up and listening on Port: " + portNumber);
 			while (true) {
 				try {
 					Socket clientSocket = serverSocket.accept();
+					new Connection(clientSocket,clientNumber, fileName, fileLength, bufferSize, fileChecksum);
 					clientNumber++;
-					System.out.println("Client " + clientNumber
-							+ " is connected.");
-					transferFile(clientSocket);
+					//transferFile(clientSocket);
 				} catch (IOException e) {
 					try {
 						serverSocket.close();

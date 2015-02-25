@@ -1,0 +1,10 @@
+/**
+ * @author 120011995
+ *
+ */
+package TCP_FTP;
+
+
+public enum Protocol_State {
+	 WAITING, HANDSHAKE, ACK, ASKFORTRANSFER, INITTRANSFER, CANCELTRANSFER, SENDINGCHUNK, TEARDOWN;
+}

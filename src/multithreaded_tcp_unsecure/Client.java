@@ -5,11 +5,13 @@
  */
 package multithreaded_tcp_unsecure;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -18,12 +20,14 @@ public class Client implements Runnable {
 	private int portNumber;
 	private int bufferSize;
 	private String hostAddress;
+	private BufferedReader fromServer;
+	private PrintWriter toServer;
 
 	public static void main(String[] args) {
 		String fileName = "/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/pg44823.txt";
 		int bufferSize = 65536;
 		int portNumber = 4444;
-		String hostIp = "138.251.212.55";
+		String hostIp = "138.251.212.77";
 
 		Client client = new Client(fileName, bufferSize, portNumber, hostIp);
 		new Thread(client).start();

@@ -21,6 +21,7 @@ public class CRC_Checksum {
 	 * @param fileName
 	 * @return The file's CRC value before transfer
 	 */
+	
 	public static long CalculateCRC32(String fileName){
 
 		//Convert file passed in to bytes to carry out checksum
@@ -40,6 +41,12 @@ public class CRC_Checksum {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		try {
+			fis.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 		//create a checksum for the file
