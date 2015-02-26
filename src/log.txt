@@ -1,0 +1,31 @@
+2015-02-26 19:00:12 DEBUG Remote_Client:60 - Hello your are connected to the File Transfer Protocol
+2015-02-26 19:02:35 DEBUG Remote_Client:60 - Hello your are connected to the File Transfer Protocol
+2015-02-26 19:02:35 DEBUG Remote_Client:66 - 
+2015-02-26 19:02:35 DEBUG Remote_Client:73 - Here is the file information:/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/pg44823.txt:128812:65536:167566708
+2015-02-26 19:02:35 DEBUG Remote_Client:81 - 
+2015-02-26 19:02:35 INFO  Remote_Client:88 - !!! actual data sent
+2015-02-26 19:08:52 DEBUG Main:63 - Hello your are connected to the File Transfer Protocol
+2015-02-26 19:08:52 DEBUG Main:69 - Changing to HANDSHAKE
+2015-02-26 19:08:52 DEBUG Main:76 - Here is the file information:/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/pg44823.txt:128812:65536:167566708
+2015-02-26 19:08:52 DEBUG Main:84 - 
+2015-02-26 19:08:52 INFO  Main:91 - !!! actual data sent
+2015-02-26 19:12:16 DEBUG Main:63 - Hello your are connected to the File Transfer Protocol
+2015-02-26 19:12:16 DEBUG Main:69 - Changing to HANDSHAKE
+2015-02-26 19:12:16 DEBUG Main:76 - Here is the file information:/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/pg44823.txt:128812:65536:167566708
+2015-02-26 19:12:16 DEBUG Main:84 - AWAITING ACK
+2015-02-26 19:12:16 INFO  Main:91 - !!! actual data sent
+2015-02-26 19:14:17 DEBUG Main:63 - Hello your are connected to the File Transfer Protocol
+2015-02-26 19:14:17 DEBUG Main:69 - Changing to HANDSHAKE
+2015-02-26 19:14:17 DEBUG Main:76 - Here is the file information:/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/pg44823.txt:128812:65536:167566708
+2015-02-26 19:14:17 DEBUG Main:84 - AWAITING ACK
+2015-02-26 19:14:17 INFO  Main:91 - !!! actual data sent
+2015-02-26 19:14:52 DEBUG Main:63 - Hello your are connected to the File Transfer Protocol
+2015-02-26 19:14:52 DEBUG Main:69 - Changing to HANDSHAKE
+2015-02-26 19:14:52 DEBUG Main:76 - Here is the file information:/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/pg44823.txt:128812:65536:167566708
+2015-02-26 19:14:52 DEBUG Main:84 - AWAITING ACK
+2015-02-26 19:14:52 INFO  Main:91 - !!! actual data sent
+2015-02-26 19:15:43 DEBUG Main:63 - Hello your are connected to the File Transfer Protocol
+2015-02-26 19:15:43 DEBUG Main:69 - Changing to HANDSHAKE
+2015-02-26 19:15:43 DEBUG Main:76 - Here is the file information:/cs/home/ms255/workspace_linux/CS3102_Practical_1/Files/pg44823.txt:128812:65536:167566708
+2015-02-26 19:15:43 DEBUG Main:84 - AWAITING ACK
+2015-02-26 19:15:43 INFO  Main:91 - !!! actual data sent
